@@ -1,0 +1,12 @@
+{
+	"manifest_version": 2,
+	"name": "Dynamic Zoom",
+	"version": "1.0",
+	
+	"description": "Tries to emulate viewing webpages in a 1200 pixel wide window by dynamically adjusting the page zoom.",
+	"homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
+	
+	"background": {
+		"scripts": ["background.js"]
+	}
+}
