@@ -1,17 +1,24 @@
-html, body, .width-choices {
-  min-width: 100px;
+html {
   margin: 0;
 }
 
+body {
+  margin: 0.2em;
+}
+
+h1 {
+  font-size: 1em;
+  margin: 0.2em;
+}
+
 .width-choices {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -moz-column-count:2;
+  -moz-column-gap: 0.2em;
+  margin: 0.2em;
 }
 
 .width-choice {
-  height: 20%;
-  margin: 0.2em;
+  margin: 0 0 0.2em 0;
   padding: 0.2em;
   background-color: #E5F2F2;
   cursor: pointer;
