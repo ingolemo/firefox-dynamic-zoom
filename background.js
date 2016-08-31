@@ -1,5 +1,11 @@
+var width = 1200
+
+function set_width(num) {
+	width = num
+}
+
 function rezoom(tab) {
-	browser.tabs.setZoom(tab.id, tab.width / 1200);
+	browser.tabs.setZoom(tab.id, tab.width / width);
 }
 
 browser.tabs.onActivated.addListener(function (activeInfo) {

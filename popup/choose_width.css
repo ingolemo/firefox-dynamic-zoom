@@ -1,0 +1,22 @@
+html, body, .width-choices {
+  min-width: 100px;
+  margin: 0;
+}
+
+.width-choices {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.width-choice {
+  height: 20%;
+  margin: 0.2em;
+  padding: 0.2em;
+  background-color: #E5F2F2;
+  cursor: pointer;
+}
+
+.width-choice:hover {
+  background-color: #CFF2F2;
+}
