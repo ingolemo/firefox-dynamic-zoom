@@ -6,12 +6,16 @@
 	"description": "Tries to emulate viewing webpages in a fixed-width window by dynamically adjusting the page zoom. Defaults to a width of 1280 pixels, which will allow most websites to display decently.",
 	"homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
 
+	"icons": {
+		"48": "icons/app-48.png"
+	},
+
 	"background": {
 		"scripts": ["background.js"]
 	},
 
 	"browser_action": {
-		"default_icon": "icons/app-32.png",
+		"default_icon": "icons/app-48.png",
 		"default_title": "Choose width to zoom to.",
 		"default_popup": "popup/choose_width.html"
 	}
