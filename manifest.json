@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Dynamic Zoom",
-	"version": "1.1",
+	"version": "1.2",
 
 	"description": "Tries to emulate viewing webpages in a fixed-width window by dynamically adjusting the page zoom. Defaults to a width of 1280 pixels, which will allow most websites to display decently.",
 	"homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
