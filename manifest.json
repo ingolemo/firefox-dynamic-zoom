@@ -15,6 +15,7 @@
 	},
 
 	"browser_action": {
+		"browser_style": false,
 		"default_icon": "icons/app-48.png",
 		"default_title": "Choose width to zoom to.",
 		"default_popup": "popup/choose_width.html"

@@ -1,5 +1,8 @@
 html {
   margin: 0;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
 }
 
 body {
@@ -11,19 +14,38 @@ h1 {
   margin: 0.2em;
 }
 
-.width-choices {
+#width-choices {
   -moz-column-count:2;
   -moz-column-gap: 0.2em;
-  margin: 0.2em;
 }
 
 .width-choice {
   margin: 0 0 0.2em 0;
   padding: 0.2em;
-  background-color: #E5F2F2;
+  background-color: #ddd;
   cursor: pointer;
 }
 
 .width-choice:hover {
-  background-color: #CFF2F2;
+  background-color: #eee;
+}
+
+#width-enable {
+  margin: 0 0 0.2em 0;
+  padding: 0.2em;
+  cursor: pointer;
+}
+
+.enabled {
+  background-color: #dfd;
+}
+.enabled:hover {
+  background-color: #efe;
+}
+
+.disabled {
+  background-color: #fdd;
+}
+.disabled:hover {
+  background-color: #fee;
 }

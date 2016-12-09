@@ -1,11 +1,21 @@
 var width = 1200
+var enabled = true
 
 function set_width(num) {
 	width = num
 }
 
+function toggle_enable() {
+	enabled = !enabled
+	return enabled
+}
+
 function rezoom(tab) {
-	browser.tabs.setZoom(tab.id, tab.width / width);
+	var zoom_level = 1;
+	if (enabled) {
+		zoom_level = tab.width / width
+	}
+	browser.tabs.setZoom(tab.id, zoom_level);
 }
 
 browser.tabs.onActivated.addListener(function (activeInfo) {
@@ -16,7 +26,7 @@ browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	rezoom(tab);
 });
 
-function to() {
+function rezoom_all() {
 	browser.tabs.query({
 		"active": true,
 	}, function (tabs) {
@@ -24,6 +34,10 @@ function to() {
 			rezoom(tabs[tabData]);
 		}
 	});
-	setTimeout(to, 2000);
 }
-to();
+
+function rezoom_all_callback() {
+	rezoom_all()
+	setTimeout(rezoom_all_callback, 5000);
+}
+rezoom_all_callback();
