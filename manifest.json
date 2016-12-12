@@ -14,6 +14,13 @@
 		"scripts": ["background.js"]
 	},
 
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["content.js"]
+        }
+    ],
+
 	"browser_action": {
 		"browser_style": false,
 		"default_icon": "icons/app-48.png",
