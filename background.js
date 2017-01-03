@@ -47,4 +47,4 @@ browser.runtime.onMessage.addListener(function(message, sender) {
 	}
 });
 
-//setInterval(rezoom_all, 5000);
+setInterval(rezoom_all, 30 * 1000);
