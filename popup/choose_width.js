@@ -1,34 +1,34 @@
-function enable(element) {
-	element.textContent = "Enabled"
-	element.className = "enabled"
-}
+function set_selected_class() {
+    browser.storage.local.get("width").then(function(items) {
+        var value;
+        if (isNaN(items.width)) {
+            value = "Disable";
+        } else {
+            value = items.width.toString();
+        }
 
-function disable(element) {
-	element.textContent = "Disabled"
-	element.className = "disabled"
-}
-
-var background_page = chrome.extension.getBackgroundPage();
-var element = document.getElementById("width-enable")
-if (background_page.enabled) {
-	enable(element)
-} else {
-	disable(element)
+        choices = document.getElementsByClassName("choice");
+        var i;
+        for (i = 0; i < choices.length; i++) {
+            var choice = choices[i];
+            if (choice.textContent === value) {
+                choice.classList.add('selected');
+            } else {
+                choice.classList.remove('selected');
+            }
+        }
+    });
 }
 
 document.addEventListener("click", function(e) {
-	if (e.target.classList.contains("width-choice")) {
-		var chosen_width = e.target.textContent;
-		background_page.set_width(chosen_width);
-		background_page.rezoom_all()
-	}
-	if (e.target.id == "width-enable") {
-		var enabled = background_page.toggle_enable();
-		if (enabled) {
-			enable(e.target)
-		} else {
-			disable(e.target)
-		}
-		background_page.rezoom_all()
-	}
+    if (e.target.classList.contains("choice")) {
+        var chosen_width = parseInt(e.target.textContent, 10);
+        chrome.extension.getBackgroundPage()
+            .set_width(chosen_width)
+            .then(set_selected_class);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function(e) {
+    set_selected_class();
 });

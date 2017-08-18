@@ -14,38 +14,36 @@ h1 {
   margin: 0.2em;
 }
 
-#width-choices {
-  -moz-column-count:2;
-  -moz-column-gap: 0.2em;
+#choices {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0.2em;
 }
 
-.width-choice {
-  margin: 0 0 0.2em 0;
+.choice {
   padding: 0.2em;
   background-color: #ddd;
   cursor: pointer;
 }
 
-.width-choice:hover {
+.choice.wide {
+  grid-column: 1 / span 2;
+}
+
+.choice:hover {
   background-color: #eee;
 }
 
-#width-enable {
-  margin: 0 0 0.2em 0;
-  padding: 0.2em;
-  cursor: pointer;
-}
-
-.enabled {
+.choice.selected {
   background-color: #dfd;
 }
-.enabled:hover {
+.choice.selected:hover {
   background-color: #efe;
 }
 
-.disabled {
+.choice.selected.red {
   background-color: #fdd;
 }
-.disabled:hover {
+.choice.selected.red:hover {
   background-color: #fee;
 }
