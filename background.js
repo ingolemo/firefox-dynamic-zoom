@@ -20,9 +20,6 @@ function round(num) {
 }
 
 function rezoom(tab, width) {
-    if (tab.status != 'complete') {
-        return
-    }
     browser.windows.get(tab.windowId).then(function(window) {
         if (window.focused != true) {
             return
