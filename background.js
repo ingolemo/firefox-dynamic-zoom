@@ -51,8 +51,8 @@ function rezoom_all(width) {
 
 // set zoom the user switches tabs
 browser.tabs.onActivated.addListener(function(activeInfo) {
-    get_width().then(function(width) {
-        browser.tabs.get(activeInfo.tabId, function(tab) {
+    browser.tabs.get(activeInfo.tabId, function(tab) {
+        get_width().then(function(width) {
             rezoom(tab, width)
         });
     });
