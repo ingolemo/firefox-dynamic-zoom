@@ -72,6 +72,11 @@ browser.runtime.onMessage.addListener(function(message, sender) {
     }
 });
 
+// set zoom when the window focus changes
+browser.windows.onFocusChanged.addListener(function(windowId) {
+    get_width().then(rezoom_all);
+});
+
 // set zoom intermittantly (just in case I missed something)
 setInterval(function() {
     get_width().then(rezoom_all);
