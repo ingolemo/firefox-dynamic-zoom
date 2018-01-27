@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Dynamic Zoom",
-    "version": "1.7",
+    "version": "1.8",
 
     "description": "Dynamically adjusts the zoom based on the width of the window.",
     "homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
