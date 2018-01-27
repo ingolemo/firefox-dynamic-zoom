@@ -24,6 +24,9 @@ function rezoom(tab, width) {
         if (window.focused != true) {
             return
         }
+        if (window.type != 'normal') {
+            return
+        }
         var zoom_level = 1;
 
         if (width != 0) {
