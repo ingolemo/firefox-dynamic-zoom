@@ -52,6 +52,20 @@ function rezoom_all(width) {
     });
 }
 
+browser.commands.onCommand.addListener(function(command) {
+    if (command == "increase-dynamic-zoom") {
+        get_width().then(function(width) {
+            var new_width = width * 1.2
+            set_width(new_width);
+        });
+    } else if (command == "decrease-dynamic-zoom") {
+        get_width().then(function(width) {
+            var new_width = width * 0.8
+            set_width(new_width);
+        });
+    }
+});
+
 // set zoom the user switches tabs
 browser.tabs.onActivated.addListener(function(activeInfo) {
     browser.tabs.get(activeInfo.tabId, function(tab) {

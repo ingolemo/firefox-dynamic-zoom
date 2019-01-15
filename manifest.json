@@ -10,6 +10,20 @@
         "default_popup": "popup/choose_width.html",
         "default_title": "Choose zoom width"
     },
+    "commands": {
+        "decrease-dynamic-zoom": {
+            "description": "Decrease the dynamic zoom width",
+            "suggested_key": {
+                "default": "Ctrl+Shift+Down"
+            }
+        },
+        "increase-dynamic-zoom": {
+            "description": "Increase the dynamic zoom width",
+            "suggested_key": {
+                "default": "Ctrl+Shift+Up"
+            }
+        }
+    },
     "content_scripts": [
         {
             "js": [
