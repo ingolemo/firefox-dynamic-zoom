@@ -91,7 +91,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // set zoom when the window is resized
 browser.runtime.onMessage.addListener(function(message, sender) {
-  if (message.greeting === "resize") {
+  if (message.id === "dynamiczoom.resize") {
     get_width().then(rezoom_all_tabs);
   }
 });

@@ -1,3 +1,3 @@
 window.addEventListener("resize", function() {
-  browser.runtime.sendMessage({ greeting: "resize" });
+  browser.runtime.sendMessage({ id: "dynamiczoom.resize" });
 });
