@@ -14,7 +14,7 @@ function set_width(num) {
       width: num
     })
     .then(function() {
-      rezoom_all(num);
+      rezoom_all_tabs(num);
       return num;
     });
 }
@@ -23,7 +23,7 @@ function round(num) {
   return Math.round(num * 100) / 100;
 }
 
-function rezoom(tab, width) {
+function rezoom_tab(tab, width) {
   browser.windows.get(tab.windowId).then(function(window) {
     if (window.focused != true) {
       return;
@@ -46,14 +46,14 @@ function rezoom(tab, width) {
   });
 }
 
-function rezoom_all(width) {
+function rezoom_all_tabs(width) {
   browser.tabs.query(
     {
       active: true
     },
     function(tabs) {
       for (tabData in tabs) {
-        rezoom(tabs[tabData], width);
+        rezoom_tab(tabs[tabData], width);
       }
     }
   );
@@ -77,7 +77,7 @@ browser.commands.onCommand.addListener(function(command) {
 browser.tabs.onActivated.addListener(function(activeInfo) {
   browser.tabs.get(activeInfo.tabId, function(tab) {
     get_width().then(function(width) {
-      rezoom(tab, width);
+      rezoom_tab(tab, width);
     });
   });
 });
@@ -85,26 +85,26 @@ browser.tabs.onActivated.addListener(function(activeInfo) {
 // set zoom the user navigates to a new url
 browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   get_width().then(function(width) {
-    rezoom(tab, width);
+    rezoom_tab(tab, width);
   });
 });
 
 // set zoom when the window is resized
 browser.runtime.onMessage.addListener(function(message, sender) {
   if (message.greeting === "resize") {
-    get_width().then(rezoom_all);
+    get_width().then(rezoom_all_tabs);
   }
 });
 
 // set zoom when the window focus changes
 browser.windows.onFocusChanged.addListener(function(windowId) {
-  get_width().then(rezoom_all);
+  get_width().then(rezoom_all_tabs);
 });
 
 // set zoom intermittantly (just in case I missed something)
 setInterval(function() {
-  get_width().then(rezoom_all);
+  get_width().then(rezoom_all_tabs);
 }, 30 * 1000);
 
 // set zoom when extension starts
-get_width().then(rezoom_all);
+get_width().then(rezoom_all_tabs);
