@@ -24,6 +24,13 @@ function round(num) {
 }
 
 async function rezoom_tab(tab, width) {
+  var can_resize = await browser.tabs.sendMessage(tab.id, {
+    id: "dynamiczoom.can_resize"
+  });
+  if (!can_resize) {
+    return;
+  }
+
   var window = await browser.windows.get(tab.windowId);
   console.log("new", window);
   if (window.focused != true) {
