@@ -23,27 +23,26 @@ function round(num) {
   return Math.round(num * 100) / 100;
 }
 
-function rezoom_tab(tab, width) {
-  browser.windows.get(tab.windowId).then(function(window) {
-    if (window.focused != true) {
-      return;
-    }
-    if (window.type != "normal") {
-      return;
-    }
-    var zoom_level = 1;
+async function rezoom_tab(tab, width) {
+  var window = await browser.windows.get(tab.windowId);
+  console.log("new", window);
+  if (window.focused != true) {
+    return;
+  }
+  if (window.type != "normal") {
+    return;
+  }
 
-    if (width != 0) {
-      zoom_level = tab.width / width;
-      zoom_level = Math.max(0.3, Math.min(zoom_level, 3));
-    }
+  var zoom_level = 1;
+  if (width != 0) {
+    zoom_level = tab.width / width;
+    zoom_level = Math.max(0.3, Math.min(zoom_level, 3));
+  }
 
-    browser.tabs.getZoom(tab.id).then(function(current_zoom) {
-      if (round(current_zoom) != round(zoom_level)) {
-        browser.tabs.setZoom(tab.id, zoom_level);
-      }
-    });
-  });
+  var current_zoom = await browser.tabs.getZoom(tab.id);
+  if (round(current_zoom) != round(zoom_level)) {
+    browser.tabs.setZoom(tab.id, zoom_level);
+  }
 }
 
 function rezoom_all_tabs(width) {
