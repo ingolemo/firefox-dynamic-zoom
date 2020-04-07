@@ -1,22 +1,12 @@
-function get_width() {
-  return browser.storage.local
-    .get({
-      width: 1280
-    })
-    .then(function(items) {
-      return items.width;
-    });
+async function get_width() {
+  var storage = await browser.storage.local.get({ width: 1280 });
+  return storage.width;
 }
 
-function set_width(num) {
-  return browser.storage.local
-    .set({
-      width: num
-    })
-    .then(function() {
-      rezoom_all_tabs(num);
-      return num;
-    });
+async function set_width(num) {
+  await browser.storage.local.set({ width: num });
+  rezoom_all_tabs(num);
+  return num;
 }
 
 function round(num) {
@@ -25,14 +15,13 @@ function round(num) {
 
 async function rezoom_tab(tab, width) {
   var can_resize = await browser.tabs.sendMessage(tab.id, {
-    id: "dynamiczoom.can_resize"
+    id: "dynamiczoom.can_resize",
   });
   if (!can_resize) {
     return;
   }
 
   var window = await browser.windows.get(tab.windowId);
-  console.log("new", window);
   if (window.focused != true) {
     return;
   }
@@ -52,64 +41,56 @@ async function rezoom_tab(tab, width) {
   }
 }
 
-function rezoom_all_tabs(width) {
-  browser.tabs.query(
-    {
-      active: true
-    },
-    function(tabs) {
-      for (tabData in tabs) {
-        rezoom_tab(tabs[tabData], width);
-      }
-    }
-  );
+async function rezoom_all_tabs(width) {
+  var tabs = await browser.tabs.query({ active: true });
+  for (tabData in tabs) {
+    rezoom_tab(tabs[tabData], width);
+  }
 }
 
-browser.commands.onCommand.addListener(function(command) {
+browser.commands.onCommand.addListener(async function (command) {
   if (command == "increase-dynamic-zoom") {
-    get_width().then(function(width) {
-      var new_width = width * 1.2;
-      set_width(new_width);
-    });
+    var width = await get_width();
+    var new_width = width * 1.2;
+    set_width(new_width);
   } else if (command == "decrease-dynamic-zoom") {
-    get_width().then(function(width) {
-      var new_width = width * 0.8;
-      set_width(new_width);
-    });
+    var width = await get_width();
+    var new_width = width * 0.8;
+    set_width(new_width);
   }
 });
 
 // set zoom the user switches tabs
-browser.tabs.onActivated.addListener(function(activeInfo) {
-  browser.tabs.get(activeInfo.tabId, function(tab) {
-    get_width().then(function(width) {
-      rezoom_tab(tab, width);
-    });
-  });
+browser.tabs.onActivated.addListener(async function (activeInfo) {
+  var tab = await browser.tabs.get(activeInfo.tabId);
+  var width = await get_width();
+  rezoom_tab(tab, width);
 });
 
-// set zoom the user navigates to a new url
-browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  get_width().then(function(width) {
-    rezoom_tab(tab, width);
-  });
+// set zoom when the user navigates to a new url
+browser.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+  var width = await get_width();
+  rezoom_tab(tab, width);
 });
 
 // set zoom when the window is resized
-browser.runtime.onMessage.addListener(function(message, sender) {
+browser.runtime.onMessage.addListener(async function (message, sender) {
   if (message.id === "dynamiczoom.resize") {
-    get_width().then(rezoom_all_tabs);
+    var width = await get_width();
+    rezoom_all_tabs(width);
   }
 });
 
 // set zoom when the window focus changes
-browser.windows.onFocusChanged.addListener(function(windowId) {
-  get_width().then(rezoom_all_tabs);
+browser.windows.onFocusChanged.addListener(async function (windowId) {
+  var width = await get_width();
+  rezoom_all_tabs(width);
 });
 
 // set zoom intermittantly (just in case I missed something)
-setInterval(function() {
-  get_width().then(rezoom_all_tabs);
+setInterval(async function () {
+  var width = await get_width();
+  rezoom_all_tabs(width);
 }, 30 * 1000);
 
 // set zoom when extension starts

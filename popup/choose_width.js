@@ -18,17 +18,19 @@ function set_selected_class(width) {
   }
 }
 
-document.addEventListener("click", function(e) {
+document.addEventListener("click", async function (e) {
   if (e.target.classList.contains("choice")) {
     var chosen_width = parseInt(e.target.textContent, 10);
     if (isNaN(chosen_width)) {
       chosen_width = 0;
     }
     console.log(toString(chosen_width));
-    bgPage.set_width(chosen_width).then(set_selected_class);
+    var width = await bgPage.get_width();
+    set_selected_class(width);
   }
 });
 
-document.addEventListener("DOMContentLoaded", function(e) {
-  bgPage.get_width().then(set_selected_class);
+document.addEventListener("DOMContentLoaded", async function (e) {
+  var width = await bgPage.get_width();
+  set_selected_class(width);
 });
