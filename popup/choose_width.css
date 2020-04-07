@@ -1,27 +1,28 @@
-html {
+:root {
   margin: 0;
   background-color: #fff;
   color: #000;
   text-align: center;
+  font-size: 0.8em;
 }
 
 body {
-  margin: 0.2em;
+  margin: 0.2rem;
 }
 
 h1 {
-  font-size: 1em;
-  margin: 0.2em;
+  font-size: 1rem;
+  margin: 0.2rem;
 }
 
 #choices {
   display: grid;
   grid-template-columns: auto auto;
-  grid-gap: 0.2em;
+  grid-gap: 0.2rem;
 }
 
 .choice {
-  padding: 0.2em;
+  padding: 0.2rem;
   background-color: #ddd;
   cursor: pointer;
 }
@@ -46,4 +47,22 @@ h1 {
 }
 .choice.selected.red:hover {
   background-color: #fee;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0.2rem;
+  text-align: left;
+}
+
+dt {
+  margin: 0;
+  padding: 0;
+}
+
+dd {
+  margin: 0;
+  padding: 0;
+  font-style: italic;
 }
