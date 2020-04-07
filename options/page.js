@@ -34,8 +34,14 @@ document.addEventListener("DOMContentLoaded", async function (e) {
   var checkbox = document.getElementById("enabled");
   var enabled = await bgPage.get_pref("enabled");
   checkbox.checked = enabled;
-  checkbox.addEventListener("click", async function (e) {
+  checkbox.addEventListener("input", async function (e) {
     await browser.storage.local.set({ enabled: this.checked });
+  });
+
+  var max_zoom = document.getElementById('max_zoom')
+  max_zoom.value = await bgPage.get_pref('max')
+  max_zoom.addEventListener('input', async function (e) {
+    await browser.storage.local.set({ max: this.value })
   });
 
   var width = await bgPage.get_pref("width");
@@ -50,6 +56,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     }
     if (changes.hasOwnProperty("width")) {
       set_selected_class(changes.width.newValue);
+    }
+    if (changes.hasOwnProperty('max')) {
+      max_zoom.value = changes.max.newValue
     }
   });
 });
