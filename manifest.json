@@ -3,7 +3,7 @@
     "scripts": ["background.js"]
   },
   "browser_action": {
-    "browser_style": false,
+    "browser_style": true,
     "default_icon": "icons/app-48.png",
     "default_popup": "options/page.html",
     "default_title": "Dynamic Zoom Options"
@@ -45,7 +45,8 @@
   "version": "1.10",
 
   "options_ui": {
-    "page": "options/page.html"
+    "page": "options/page.html",
+    "browser_style": true
   },
 
   "applications": {
