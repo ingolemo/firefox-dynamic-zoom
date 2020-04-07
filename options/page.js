@@ -31,6 +31,13 @@ document.addEventListener("DOMContentLoaded", async function (e) {
       });
     });
 
+  var checkbox = document.getElementById("enabled");
+  var enabled = await bgPage.get_enabled();
+  checkbox.checked = enabled;
+  checkbox.addEventListener("click", async function (e) {
+    bgPage.set_enabled(this.checked);
+  });
+
   var width = await bgPage.get_width();
   set_selected_class(width);
 });

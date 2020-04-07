@@ -27,10 +27,6 @@ h1 {
   cursor: pointer;
 }
 
-.choice.wide {
-  grid-column: 1 / span 2;
-}
-
 .choice:hover {
   background-color: #eee;
 }
@@ -40,13 +36,6 @@ h1 {
 }
 .choice.selected:hover {
   background-color: #efe;
-}
-
-.choice.selected.red {
-  background-color: #fdd;
-}
-.choice.selected.red:hover {
-  background-color: #fee;
 }
 
 dl {
