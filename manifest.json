@@ -5,8 +5,8 @@
   "browser_action": {
     "browser_style": false,
     "default_icon": "icons/app-48.png",
-    "default_popup": "popup/choose_width.html",
-    "default_title": "Choose zoom width"
+    "default_popup": "options/page.html",
+    "default_title": "Dynamic Zoom Options"
   },
   "commands": {
     "toggle-dynamic-zoom": {
@@ -42,5 +42,15 @@
   "manifest_version": 2,
   "name": "Dynamic Zoom",
   "permissions": ["storage"],
-  "version": "1.10"
+  "version": "1.10",
+
+  "options_ui": {
+    "page": "options/page.html"
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "{4b6e6274-681a-45a4-98db-7c7d03df3560}"
+    }
+  }
 }
