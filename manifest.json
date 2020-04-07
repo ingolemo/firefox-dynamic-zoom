@@ -11,6 +11,12 @@
         "default_title": "Choose zoom width"
     },
     "commands": {
+        "toggle-dynamic-zoom": {
+            "description": "Toggle the dynamic zoom",
+            "suggested_key": {
+                "default": "Ctrl+Shift+Left"
+            }
+        },
         "decrease-dynamic-zoom": {
             "description": "Decrease the dynamic zoom width",
             "suggested_key": {

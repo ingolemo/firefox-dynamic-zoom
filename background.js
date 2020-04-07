@@ -9,6 +9,16 @@ async function set_width(num) {
   return num;
 }
 
+async function get_enabled() {
+  var storage = await browser.storage.local.get({ enabled: true });
+  return storage.enabled;
+}
+
+async function set_enabled(value) {
+  await browser.storage.local.set({ enabled: value });
+  rezoom_all_tabs();
+}
+
 function round(num) {
   return Math.round(num * 100) / 100;
 }
@@ -30,7 +40,8 @@ async function rezoom_tab(tab, width) {
   }
 
   var zoom_level = 1;
-  if (width != 0) {
+  var enabled = await get_enabled();
+  if (enabled && width != 0) {
     zoom_level = tab.width / width;
     zoom_level = Math.max(0.3, Math.min(zoom_level, 3));
   }
@@ -50,7 +61,10 @@ async function rezoom_all_tabs() {
 }
 
 browser.commands.onCommand.addListener(async function (command) {
-  if (command == "increase-dynamic-zoom") {
+  if (command == "toggle-dynamic-zoom") {
+    var enabled = await get_enabled();
+    set_enabled(!enabled)
+  } else if (command == "increase-dynamic-zoom") {
     var width = await get_width();
     var new_width = width * 1.2;
     set_width(new_width);
