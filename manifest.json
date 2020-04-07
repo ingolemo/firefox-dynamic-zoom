@@ -1,54 +1,46 @@
 {
-    "background": {
-        "scripts": [
-            "background.js"
-        ]
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "browser_style": false,
+    "default_icon": "icons/app-48.png",
+    "default_popup": "popup/choose_width.html",
+    "default_title": "Choose zoom width"
+  },
+  "commands": {
+    "toggle-dynamic-zoom": {
+      "description": "Toggle the dynamic zoom",
+      "suggested_key": {
+        "default": "Ctrl+Shift+Left"
+      }
     },
-    "browser_action": {
-        "browser_style": false,
-        "default_icon": "icons/app-48.png",
-        "default_popup": "popup/choose_width.html",
-        "default_title": "Choose zoom width"
+    "decrease-dynamic-zoom": {
+      "description": "Decrease the dynamic zoom width",
+      "suggested_key": {
+        "default": "Ctrl+Shift+Down"
+      }
     },
-    "commands": {
-        "toggle-dynamic-zoom": {
-            "description": "Toggle the dynamic zoom",
-            "suggested_key": {
-                "default": "Ctrl+Shift+Left"
-            }
-        },
-        "decrease-dynamic-zoom": {
-            "description": "Decrease the dynamic zoom width",
-            "suggested_key": {
-                "default": "Ctrl+Shift+Down"
-            }
-        },
-        "increase-dynamic-zoom": {
-            "description": "Increase the dynamic zoom width",
-            "suggested_key": {
-                "default": "Ctrl+Shift+Up"
-            }
-        }
-    },
-    "content_scripts": [
-        {
-            "js": [
-                "content.js"
-            ],
-            "matches": [
-                "*://*/*"
-            ]
-        }
-    ],
-    "description": "Dynamically adjusts the zoom based on the width of the window.",
-    "homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
-    "icons": {
-        "48": "icons/app-48.png"
-    },
-    "manifest_version": 2,
-    "name": "Dynamic Zoom",
-    "permissions": [
-        "storage"
-    ],
-    "version": "1.10"
+    "increase-dynamic-zoom": {
+      "description": "Increase the dynamic zoom width",
+      "suggested_key": {
+        "default": "Ctrl+Shift+Up"
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["*://*/*"]
+    }
+  ],
+  "description": "Dynamically adjusts the zoom based on the width of the window.",
+  "homepage_url": "https://github.com/ingolemo/firefox-dynamic-zoom",
+  "icons": {
+    "48": "icons/app-48.png"
+  },
+  "manifest_version": 2,
+  "name": "Dynamic Zoom",
+  "permissions": ["storage"],
+  "version": "1.10"
 }
