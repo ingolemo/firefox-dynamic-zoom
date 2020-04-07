@@ -5,7 +5,7 @@ async function get_width() {
 
 async function set_width(num) {
   await browser.storage.local.set({ width: num });
-  rezoom_all_tabs(num);
+  rezoom_all_tabs();
   return num;
 }
 
@@ -41,7 +41,8 @@ async function rezoom_tab(tab, width) {
   }
 }
 
-async function rezoom_all_tabs(width) {
+async function rezoom_all_tabs() {
+  var width = await get_width(width)
   var tabs = await browser.tabs.query({ active: true });
   for (tabData in tabs) {
     rezoom_tab(tabs[tabData], width);
@@ -76,22 +77,19 @@ browser.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
 // set zoom when the window is resized
 browser.runtime.onMessage.addListener(async function (message, sender) {
   if (message.id === "dynamiczoom.resize") {
-    var width = await get_width();
-    rezoom_all_tabs(width);
+    rezoom_all_tabs();
   }
 });
 
 // set zoom when the window focus changes
 browser.windows.onFocusChanged.addListener(async function (windowId) {
-  var width = await get_width();
-  rezoom_all_tabs(width);
+  rezoom_all_tabs();
 });
 
 // set zoom intermittantly (just in case I missed something)
 setInterval(async function () {
-  var width = await get_width();
-  rezoom_all_tabs(width);
+  rezoom_all_tabs();
 }, 30 * 1000);
 
 // set zoom when extension starts
-get_width().then(rezoom_all_tabs);
+rezoom_all_tabs();
