@@ -11,6 +11,11 @@ function round(num) {
 }
 
 async function rezoom_tab(tab, width) {
+  var enabled = await get_pref("enabled");
+  if (!enabled) {
+    return;
+  }
+
   var can_resize = await browser.tabs.sendMessage(tab.id, {
     id: "dynamiczoom.can_resize",
   });
@@ -27,9 +32,8 @@ async function rezoom_tab(tab, width) {
   }
 
   var zoom_level = 1;
-  var enabled = await get_pref("enabled");
-  if (enabled && width != 0) {
-    var max_zoom = await get_pref('max');
+  if (width != 0) {
+    var max_zoom = await get_pref("max");
     zoom_level = tab.width / width;
     zoom_level = Math.max(0.3, Math.min(zoom_level, max_zoom));
   }
@@ -43,8 +47,23 @@ async function rezoom_tab(tab, width) {
 async function rezoom_all_tabs() {
   var width = await get_pref("width");
   var tabs = await browser.tabs.query({ active: true });
-  for (tabData in tabs) {
-    rezoom_tab(tabs[tabData], width);
+  for (tabIndex in tabs) {
+    rezoom_tab(tabs[tabIndex], width);
+  }
+}
+
+async function unzoom_all_tabs() {
+  var tabs = await browser.tabs.query({ active: true });
+  for (tabIndex in tabs) {
+    var tab = tabs[tabIndex]
+    var can_resize = await browser.tabs.sendMessage(tab.id, {
+      id: "dynamiczoom.can_resize",
+    });
+    if (!can_resize) {
+      continue;
+    }
+
+    browser.tabs.setZoom(tab.id, 1.0);
   }
 }
 
@@ -60,6 +79,12 @@ browser.commands.onCommand.addListener(async function (command) {
     var width = await get_pref("width");
     var new_width = width * 0.8;
     browser.storage.local.set({ width: new_width });
+  }
+});
+
+browser.storage.onChanged.addListener(async function (changes, areaName) {
+  if (changes.hasOwnProperty("enabled") && changes.enabled.newValue === false) {
+    unzoom_all_tabs();
   }
 });
 
