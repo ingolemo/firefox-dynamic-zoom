@@ -27,17 +27,29 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           chosen_width = 0;
         }
         set_selected_class(chosen_width);
-        await bgPage.set_width(chosen_width);
+        await browser.storage.local.set({ width: chosen_width });
       });
     });
 
   var checkbox = document.getElementById("enabled");
-  var enabled = await bgPage.get_enabled();
+  var enabled = await bgPage.get_pref("enabled");
   checkbox.checked = enabled;
   checkbox.addEventListener("click", async function (e) {
-    bgPage.set_enabled(this.checked);
+    await browser.storage.local.set({ enabled: this.checked });
   });
 
-  var width = await bgPage.get_width();
+  var width = await bgPage.get_pref("width");
   set_selected_class(width);
+
+  browser.storage.onChanged.addListener(async function (changes, areaName) {
+    if (areaName !== "local") {
+      return;
+    }
+    if (changes.hasOwnProperty("enabled")) {
+      checkbox.checked = changes.enabled.newValue;
+    }
+    if (changes.hasOwnProperty("width")) {
+      set_selected_class(changes.width.newValue);
+    }
+  });
 });
