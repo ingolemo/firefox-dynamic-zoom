@@ -6,31 +6,31 @@ function set_selected_class(width) {
     value = "Disable";
   }
 
-  choices = document.getElementsByClassName("choice");
-  var i;
-  for (i = 0; i < choices.length; i++) {
-    var choice = choices[i];
-    if (choice.textContent === value) {
-      choice.classList.add("selected");
-    } else {
-      choice.classList.remove("selected");
-    }
-  }
+  document
+    .querySelectorAll("#choices > .choice")
+    .forEach(async function (choice) {
+      if (choice.textContent === value) {
+        choice.classList.add("selected");
+      } else {
+        choice.classList.remove("selected");
+      }
+    });
 }
 
-document.addEventListener("click", async function (e) {
-  if (e.target.classList.contains("choice")) {
-    var chosen_width = parseInt(e.target.textContent, 10);
-    if (isNaN(chosen_width)) {
-      chosen_width = 0;
-    }
-    console.log(toString(chosen_width));
-    var width = await bgPage.get_width();
-    set_selected_class(width);
-  }
-});
-
 document.addEventListener("DOMContentLoaded", async function (e) {
+  document
+    .querySelectorAll("#choices > .choice")
+    .forEach(async function (choice) {
+      choice.addEventListener("click", async function (e) {
+        var chosen_width = parseInt(e.target.textContent, 10);
+        if (isNaN(chosen_width)) {
+          chosen_width = 0;
+        }
+        set_selected_class(chosen_width);
+        await bgPage.set_width(chosen_width);
+      });
+    });
+
   var width = await bgPage.get_width();
   set_selected_class(width);
 });
