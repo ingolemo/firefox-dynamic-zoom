@@ -1,3 +1,7 @@
+input[type="number"] {
+  max-width: 7rem;
+}
+
 #choices {
   display: grid;
   grid-template-columns: auto auto;

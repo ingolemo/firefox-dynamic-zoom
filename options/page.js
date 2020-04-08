@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
   });
 
   var max_zoom = document.getElementById('max_zoom')
-  max_zoom.value = await bgPage.get_pref('max')
+  max_zoom.value = Math.round(100 * await bgPage.get_pref('max'))
   max_zoom.addEventListener('input', async function (e) {
-    await browser.storage.local.set({ max: this.value })
+    await browser.storage.local.set({ max: this.value / 100 })
   });
 
   var width = await bgPage.get_pref("width");
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
       set_selected_class(changes.width.newValue);
     }
     if (changes.hasOwnProperty('max')) {
-      max_zoom.value = changes.max.newValue
+      max_zoom.value = Math.round(changes.max.newValue * 100)
     }
   });
 });
