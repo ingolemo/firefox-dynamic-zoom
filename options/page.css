@@ -2,30 +2,6 @@ input[type="number"] {
   max-width: 7rem;
 }
 
-#choices {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 0.2rem;
-  text-align: center;
-}
-
-.choice {
-  padding: 0.2rem;
-  background-color: #ddd;
-  cursor: pointer;
-}
-
-.choice:hover {
-  background-color: #eee;
-}
-
-.choice.selected {
-  background-color: #dfd;
-}
-.choice.selected:hover {
-  background-color: #efe;
-}
-
 dl {
   display: grid;
   grid-template-columns: auto auto;
