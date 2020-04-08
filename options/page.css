@@ -19,6 +19,7 @@ dl {
   grid-template-columns: auto auto;
   grid-gap: 0.2rem;
   margin: 0 0.2rem;
+  font-size: 0.8rem;
 }
 
 dt {
