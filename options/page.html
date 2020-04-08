@@ -21,10 +21,20 @@
         <label for="simulated_width">Simulated Width (pixels)</label>
         <input type="number" min="800" id="simulated_width" />
       </div>
+      <p class="explanation">
+        Dyanamic Zoom will adjust the zoom level so that the webpage thinks it's
+        window is this wide. This should not necessarily be the width of your
+        monitor, unless you love whitespace. Default: 1280 pixels
+      </p>
       <div class="panel-formElements-item">
         <label for="max_zoom">Maximum Zoom (%)</label>
         <input type="number" min="30" max="300" step="10" id="max_zoom" />
       </div>
+      <p class="explanation">
+        Dynamic Zoom will not zoom a website more than this amount. Lower values
+        will give larger windows more room to breath, but may cause text re-flow
+        on some websites. Default: 300%
+      </p>
     </div>
     <div class="panel-section-separator"></div>
     <dl>
