@@ -1,25 +1,46 @@
+body {
+  width: 20rem;
+}
+
+section {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+section:last-child {
+  border-bottom-width: 0;
+}
+
 input[type="checkbox"] {
-  margin: 0 1rem 0 0;
+  flex-shrink: 0;
 }
 
 input[type="number"] {
   max-width: 7rem;
-  margin: 0 0 0 auto;
+}
+
+.preference {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .explanation {
   font-size: 0.8rem;
-  margin: 0 0 1rem 0;
+  margin: 0;
   padding: 0;
-  max-width: 25em;
+}
+
+.keybinds {
+  font-size: 0.9rem;
 }
 
 dl {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 0.2rem;
-  margin: 0 0.2rem;
-  font-size: 0.8rem;
+  grid-template-columns: auto 1fr;
+  gap: 0 0.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 dt {

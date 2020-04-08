@@ -6,27 +6,27 @@
     <script src="page.js"></script>
   </head>
   <body>
-    <header class="panel-section panel-section-header">
-      <div class="icon-section-header">
-        <img src="/icons/app-48.png" height="32" width="32" />
-      </div>
-      <div class="text-section-header">Dynamic Zoom Options</div>
-    </header>
-    <div class="panel-section panel-section-formElements">
-      <div class="panel-formElements-item">
+    <section>
+      <div class="preference browser-style">
         <input type="checkbox" id="enabled" />
-        <label for="enabled">Enabled</label>
+        <label for="enabled"
+          >Allow Dynamic Zoom to control the zoom level of webpages</label
+        >
       </div>
-      <div class="panel-formElements-item">
+    </section>
+    <section>
+      <div class="preference browser-style">
         <label for="simulated_width">Simulated Width (pixels)</label>
         <input type="number" min="800" id="simulated_width" />
       </div>
       <p class="explanation">
-        Dyanamic Zoom will adjust the zoom level so that the webpage thinks it's
+        Dynamic Zoom will adjust the zoom level so that the webpage thinks it's
         window is this wide. This should not necessarily be the width of your
         monitor, unless you love whitespace. Default: 1280 pixels
       </p>
-      <div class="panel-formElements-item">
+    </section>
+    <section>
+      <div class="preference browser-style">
         <label for="max_zoom">Maximum Zoom (%)</label>
         <input type="number" min="30" max="300" step="10" id="max_zoom" />
       </div>
@@ -35,15 +35,19 @@
         will give larger windows more room to breath, but may cause text re-flow
         on some websites. Default: 300%
       </p>
-    </div>
-    <div class="panel-section-separator"></div>
-    <dl>
-      <dt>Toggle Dynamic Zoom</dt>
-      <dd>Ctrl+Shift+Left</dd>
-      <dt>Decrease Simulated Width</dt>
-      <dd>Ctrl+Shift+Down</dd>
-      <dt>Increase Simulated Width</dt>
-      <dd>Ctrl+Shift+Up</dd>
-    </dl>
+    </section>
+    <section>
+      <div class="keybinds">
+        <dl>
+          <dt>Toggle Dynamic Zoom</dt>
+          <dd>Ctrl+Shift+Left</dd>
+          <dt>Decrease Simulated Width</dt>
+          <dd>Ctrl+Shift+Down</dd>
+          <dt>Increase Simulated Width</dt>
+          <dd>Ctrl+Shift+Up</dd>
+        </dl>
+      </div>
+      <p class="explanation">(Mac: use Cmd, not Ctrl)</p>
+    </section>
   </body>
 </html>
