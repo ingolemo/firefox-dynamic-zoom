@@ -55,7 +55,7 @@ async function rezoom_all_tabs() {
 async function unzoom_all_tabs() {
   var tabs = await browser.tabs.query({ active: true });
   for (tabIndex in tabs) {
-    var tab = tabs[tabIndex]
+    var tab = tabs[tabIndex];
     var can_resize = await browser.tabs.sendMessage(tab.id, {
       id: "dynamiczoom.can_resize",
     });
