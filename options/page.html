@@ -17,7 +17,20 @@
     <section>
       <div class="preference browser-style">
         <label for="simulated_width">Simulated Width (pixels)</label>
-        <input type="number" min="800" id="simulated_width" />
+        <input
+          type="number"
+          id="simulated_width"
+          list="resolutions"
+        />
+        <datalist id="resolutions">
+          <option>800</option>
+          <option>1024</option>
+          <option>1280</option>
+          <option>1366</option>
+          <option>1440</option>
+          <option>1920</option>
+          <option>1600</option>
+        </datalist>
       </div>
       <p class="explanation">
         Dynamic Zoom will adjust the zoom level so that the webpage thinks its

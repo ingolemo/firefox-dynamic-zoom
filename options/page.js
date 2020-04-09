@@ -28,7 +28,10 @@ document.addEventListener("DOMContentLoaded", async function (e) {
       checkbox.checked = changes.enabled.newValue;
     }
     if (changes.hasOwnProperty("width")) {
-      simulated_width.value = Math.round(changes.width.newValue)
+      var new_width = Math.round(changes.width.newValue);
+      if (new_width >= 800) {
+        simulated_width.value = new_width;
+      }
     }
     if (changes.hasOwnProperty('max')) {
       max_zoom.value = Math.round(changes.max.newValue * 100)
