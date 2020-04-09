@@ -10,21 +10,21 @@
   },
   "commands": {
     "toggle-dynamic-zoom": {
-      "description": "Toggle the dynamic zoom",
+      "description": "Toggle Extension",
       "suggested_key": {
-        "default": "Ctrl+Shift+Left"
+        "default": "Ctrl+Shift+0"
       }
     },
     "decrease-dynamic-zoom": {
-      "description": "Decrease the dynamic zoom width",
+      "description": "Decrease the simulated width",
       "suggested_key": {
-        "default": "Ctrl+Shift+Down"
+        "default": "Ctrl+Shift+8"
       }
     },
     "increase-dynamic-zoom": {
-      "description": "Increase the dynamic zoom width",
+      "description": "Increase the simulated width",
       "suggested_key": {
-        "default": "Ctrl+Shift+Up"
+        "default": "Ctrl+Shift+9"
       }
     }
   },
