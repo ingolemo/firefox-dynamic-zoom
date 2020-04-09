@@ -31,7 +31,7 @@ input[type="number"] {
   padding: 0;
 }
 
-.keybinds {
+#keybinds {
   font-size: 0.9rem;
 }
 

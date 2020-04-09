@@ -20,6 +20,20 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     await browser.storage.local.set({ max: this.value / 100 })
   });
 
+  var keybinds = document.querySelector("dl#keybinds");
+  var commands = await browser.commands.getAll();
+  commands.forEach(async function (command) {
+    var dt = document.createElement('dt')
+    var text = document.createTextNode(command.description)
+    dt.appendChild(text)
+    keybinds.appendChild(dt)
+
+    var dd = document.createElement('dd')
+    var text = document.createTextNode(command.shortcut)
+    dd.appendChild(text)
+    keybinds.appendChild(dd)
+  });
+
   browser.storage.onChanged.addListener(async function (changes, areaName) {
     if (areaName !== "local") {
       return;
