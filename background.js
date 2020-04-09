@@ -73,11 +73,11 @@ browser.commands.onCommand.addListener(async function (command) {
     browser.storage.local.set({ enabled: !enabled });
   } else if (command == "increase-dynamic-zoom") {
     var width = await get_pref("width");
-    var new_width = width * 1.2;
+    var new_width = width * 1.1;
     browser.storage.local.set({ width: new_width });
   } else if (command == "decrease-dynamic-zoom") {
     var width = await get_pref("width");
-    var new_width = width * 0.8;
+    var new_width = width * 0.9;
     browser.storage.local.set({ width: new_width });
   }
 });
