@@ -24,9 +24,6 @@ async function rezoom_tab(tab, width) {
   }
 
   var window = await browser.windows.get(tab.windowId);
-  if (window.focused != true) {
-    return;
-  }
   if (window.type != "normal") {
     return;
   }
