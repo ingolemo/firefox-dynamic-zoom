@@ -42,7 +42,7 @@
   "manifest_version": 2,
   "name": "Dynamic Zoom",
   "permissions": ["storage"],
-  "version": "2.1",
+  "version": "2.2",
 
   "options_ui": {
     "page": "options/page.html",
