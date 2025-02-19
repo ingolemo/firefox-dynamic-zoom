@@ -1,5 +1,5 @@
 async function get_pref(name) {
-  var defaults = { width: 1280, enabled: true, max: 3.0 };
+  var defaults = { width: 1280, enabled: true, max: 3.0, min: 0.3 };
   var getter = {};
   getter[name] = defaults[name];
   var storage = await browser.storage.local.get(getter);
@@ -31,8 +31,9 @@ async function rezoom_tab(tab, width) {
   var zoom_level = 1;
   if (width != 0) {
     var max_zoom = await get_pref("max");
+    var min_zoom = await get_pref("min");
     zoom_level = tab.width / width;
-    zoom_level = Math.max(0.3, Math.min(zoom_level, max_zoom));
+    zoom_level = Math.max(min_zoom, Math.min(zoom_level, max_zoom));
   }
 
   var current_zoom = await browser.tabs.getZoom(tab.id);

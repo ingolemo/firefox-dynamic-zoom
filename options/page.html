@@ -51,6 +51,17 @@
       </p>
     </section>
     <section>
+      <div class="preference browser-style">
+        <label for="min_zoom">Minimum Zoom (%)</label>
+        <input type="number" min="30" max="100" step="10" id="min_zoom" />
+      </div>
+      <p class="explanation">
+        Dynamic Zoom will not zoom a website less than this amount. This allows
+        for better readability for small windows, but will cause text re-flow. 
+        Default: 30%
+      </p>
+    </section>
+    <section>
       <dl id="keybinds"></dl>
       <p class="explanation">(Mac: use Cmd, not Ctrl)</p>
     </section>
