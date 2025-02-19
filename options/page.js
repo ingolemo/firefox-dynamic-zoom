@@ -20,6 +20,12 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     await browser.storage.local.set({ max: this.value / 100 });
   });
 
+  var min_zoom = document.getElementById("min_zoom");
+  min_zoom.value = Math.round(100 * (await bgPage.get_pref("min")));
+  min_zoom.addEventListener("input", async function (e) {
+    await browser.storage.local.set({ min: this.value / 100 });
+  });
+
   var keybinds = document.querySelector("dl#keybinds");
   var commands = await browser.commands.getAll();
   commands.forEach(async function (command) {
@@ -49,6 +55,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     }
     if (changes.hasOwnProperty("max")) {
       max_zoom.value = Math.round(changes.max.newValue * 100);
+    }
+    if (changes.hasOwnProperty("min")) {
+      min_zoom.value = Math.round(changes.min.newValue * 100);
     }
   });
 });
